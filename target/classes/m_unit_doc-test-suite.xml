@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="m_unit_doc-test-suite.xml" />
+	<munit:test name="m_unit_doc-test-suite-m_unit_docFlowTest" doc:id="fcaecf16-edf0-44e1-83f9-55f018b7b5c3" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="f20dd653-40f8-491f-91ca-0c1c7d8dbb31" />
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="03067527-54c6-4dc0-9744-da2678530ca2" >
+				<munit:attributes value="#[{queryParams: {ID: 5}}]" />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to m_unit_docFlow" doc:id="3255e7fb-406c-493e-b84c-4efdc97ccd8b" name="m_unit_docFlow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="e6b4e6bc-e883-46dc-a11e-56eef536a73c" expression="#[payload]" is="#[MunitTools :: notNullValue()]"/>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>
